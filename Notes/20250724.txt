@@ -1,0 +1,102 @@
+VAR, function
+
+var x = 1;
+var y = 12;
+function a() {
+    var x = 1;
+    var y = 2;
+    z = x + y;
+    console.log(z);
+}
+a();
+console.log(z);
+    z = x + y;
+console.log(z);
+
+*********************************
+Step 1) 
+window
+x = 1 => undefined
+y = 2 => undefined
+
+Step 2) 
+RAM calculate result
+Z = 3
+
+Step 3)
+=> Window
+x = undefined => 1
+y = undefined => 2
+z = 3
+
+Step 4)
+x = 1
+y = 2 => 12
+z = 3 => 13
+
+Sources:
+https://glot.io/snippets/h9i5mio4ev
+**********************************
+LET, const
+
+var y = 12;
+let x = 0;
+z = 1;
+{
+let z = 1;
+let y = 2;
+z = x + y;
+console. log(z,y);
+}
+console. log(z,y); 
+z = x + y;
+console. log(z); 
+
+First:  
+2   [0 (No Data from line 44-46) +2 (from line 45)], 2 [from line 45]
+Second:
+1   [from line 42], 12 [from line 40]
+Third:
+12  [0 (from line 41) +12 (from line 40)]
+
+Sources:
+https://glot.io/snippets/h9i5laaefp
+************************************
+
+console.log("XXXXX");
+console=>object, log=>method, XXXXX=Call method (function)
+
+let myNumber <=Statement (have return)
+console.log("myNumber"); <=Expression Statement
+let myString <=Statement
+myString("Hello from String); <=Expression Statement
+If (x>0) { } <= Conditional Expression ==> F/T
+
+function expression
+const a = function() {
+    console.log('hello');
+}
+
+function declaration <=Easy for correction from orders
+function b() {
+    console.log('hello');
+}
+
+Immediately Invoked Function Expression
+(function c () {
+    console.log('hello');
+})();
+
+arrow function
+const c = () => console.log('hello');
+c();
+const d = e => console.log(e);
+d(1);
+
+const x = a => b => a+b;
+const x = function(a) { 
+          return function(b) {
+          return a+b ;
+ }
+ }
+ console.log(x(1)(2));

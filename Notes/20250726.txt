@@ -1,0 +1,85 @@
+JS:
+all things is address
+
+Agent execution model
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Execution_model
+
+Timeout: call back function (let address to another function) to event queue
+var: loop to + the number to fulfil the i <=10 requirement 
+     until 11 which can fulfil the i <=10 requirement 
+Let: 
+const: lock the functions, avoid TDZ
+
+for (var i = 0; i <=10; i++){
+    setTimeout(()=>console.log(i),2000);
+}
+Answer:
+11
+11
+11
+11
+11
+11
+11
+11
+11
+11
+11
+
+for (let i = 0; i <=10; i++){
+    setTimeout(()=>console.log(i),2000);
+}
+
+Answer:
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+
+------------------------------------
+Closure
+
+let x = 1;
+const y = () => {
+    console.log(x);
+    return () =>{
+        console.log(x);
+    }
+}
+z=y();
+z();
+
+Step 1:
+HEAP RAM: y ?  
+Step 2:
+HEAP RAM: let x =1 return () => {} (address)
+Step 3:
+HEAP RAM: let x =1 return () => {} (address) copy to y
+Steps 4: 
+find the console.log (x) result from line 43 (x = 1) and create another address
+Steps 5: 
+Window cannot found z, and the result from step 4 will write to Window
+
+----------------------------------
+setTimeout(()=>console.log("first"),5000); // 5000=5 seconds
+setTimeout(()=>console.log("second"),2000);// 2000=2 seconds
+setTimeout(()=>console.log("third"),0);
+console.log("no timeout");
+
+answer:
+no timeout
+third
+second
+first
+
+Exam:
+2 JavaScript questions
+
+

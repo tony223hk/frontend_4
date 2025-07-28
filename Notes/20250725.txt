@@ -1,0 +1,413 @@
+function can be:
+1. a variable with a value
+2. assigned as a value to be other variable
+3. anonymous
+4. used as argument in the call to the other function
+   e.g.:
+   function a (x,y) {
+        //var let x = b;
+   console.log("Hello World ! function a" + y);
+   x();
+   }
+
+   function b () {
+   console.log("function b !");
+   }
+   a(b,1+1);
+     
+   Answer:
+   Hello World ! function a2
+   function b !
+
+5. value of the property in the object
+
+Operator is a function
+a=10
+function =(variable, expression) {
+1. Evaluate expression
+2. Find variable by variable name
+3. Assign result of the expression to the variable
+4. Return result of the expression }
+
+Operator precedence reference:
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_precedence
+
+**********
+E.G.1:
+function a () {
+console.log("Hello World ! function a");
+return 1;
+}
+
+function b () {
+console.log("function b !");
+return 2;
+}
+console.log(a()+b());
+
+Answer:
+Hello World ! function a
+function b !
+3 [have 3 operators, 1: a() => 2: +b() => 3: a()+b()]
+
+-------------------------
+E.G.2:
+function a () {
+console.log("Hello World ! function a");
+return b;
+}
+
+function b () {
+console.log("function b !");
+return a;
+}
+a ()()()()()()()();
+// b()()()()()()(); 
+//   a()()()()()();
+
+Answer:
+Hello World ! function a
+function b !
+Hello World ! function a
+function b !
+Hello World ! function a
+function b !
+Hello World ! function a
+function b !
+
+---------------------------
+E.G.3:
+x = () => {
+    let x=1;
+    let y=2;
+    return [x,y];
+};
+a=x();
+console.log(a);
+
+Answer:
+[ 1, 2 ] => return multiple value need []
+----------------------------
+If than else:
+E.G.1:
+let i = 1;
+x =() => {console.log("true"); return 1};
+y =() => {console.log("false"); return 0};
+z =((i > 0) ? x():y()) == 0 ? x():y();
+console.log(z);
+*******
+Line 85 long form
+if (i > 0) {
+    console.log("i is larger 0");
+}
+else if (i==0) {
+    console.log("i is equal to 0");
+}
+else {
+    console.log("i is less than to 0");
+}
+
+Answer:
+true
+false 5)
+0
+i is larger 0
+*== check value
+*=== check value & data type
+----------------------------
+For loop
+E.G:
+for (i=1; i<=10; i ++) {
+    console.log (i);
+}
+
+Answer:
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+-----------------------------
+While loop (statement)
++ controller
+E.G:
+i = 0;
+while (true) {
+    console.log(i++); // situation 1: variable
+    console.log(++i); // situation 2: operator
+    if (i === 5) break;
+}
+Answer:
+(situation 1): | (situation 2):
+0              |   1
+1              |   2
+2              |   3
+3              |   4
+4              |   5
+---------------------------------
+Switch
+E.G:
+value = 1;
+switch (value) {
+    case 10: console.log("fail")
+        break;
+    case 20: console.log("fail")
+        break;
+    case 90: console.log("pass")
+        break;
+    default:
+        console.log("fail")
+}
+Answer:
+fail <= result from line 143
+------------------------------------
+truthy/falsy value
+0=false, other number/ string, =true
+
+x = 1 || 0 || undefined || null || false || NaN ||'';
+console.log(x);
+Answer: 1
+
+x = 0 || undefined || null || false || "" || NaN ;
+console.log(x);
+Answer: Not a Number
+
+x = a() || 0 || undefined || null || false || "" || NaN ;
+console.log(x);
+function a() {
+   console.log('a');
+   return 1;
+}
+Answer: a, 1
+
+x = a() || 0 || undefined || null || false || "" || NaN ;
+console.log(x);
+function a() {
+   console.log('a');
+}
+Answer: a, NaN
+
+defaultCity ="KW"
+city='tst'
+x= city || console.log("please input city") || defaultCity
+console.log(x)
+Answer: tst
+
+defaultCity ="KW"
+city=''
+x= city || console.log("please input city") || defaultCity
+console.log(x)
+Answer: please input city, KW
+------------------------------
+Array
+1. for each => function apply to each element (no new array)
+2. Filter => Array enter into function and filter into a new array
+3. Map => function is applied to each element and develops another new array
+4. Reducing => the function apply to each element and calculate the final result
+
+Example
+a)
+const companies = [
+    {name : "company one", category : "retails", start : 1992, end : 2024},
+    {name : "company two", category : "finance", start : 1971, end : 2020},
+    {name : "company three", category : "wholeSales", start : 1988, end : 1999},
+    {name : "company four", category : "wholeSales", start : 1996, end : 2010},
+    {name : "company five", category : "retails", start : 1960, end : 2004},
+    {name : "company six", category : "finance", start : 1992, end : 2011},
+    {name : "company seven", category : "finance", start : 1986, end : 2009},
+    {name : "company eigth", category : "retails", start : 1977, end : 2012},
+    {name : "company nine", category : "retails", start : 1992, end : 2006},
+    {name : "company ten", category : "wholeSales", start : 1992, end : 1997}];
+const ages = [33,12,45,77,60,23,7,80,55,67,29,16];
+
+Simply for loop
+for(let i =0; i <companies.length; i++) {
+    console.log(companies[i].name, companies[i].end - companies[i].start);
+}
+
+b)
+companies.forEach(company=> 
+console.log(company.name,company.end - company.start));
+
+c)
+companies.forEach(company=> console.log(company));
+
+Answer:
+a) , b)
+company one 32
+company two 49
+company three 11
+company four 14
+company five 44
+company six 19
+company seven 23
+company eigth 35
+company nine 14
+company ten 5
+
+c)
+{ name: 'company one', category: 'retails', start: 1992, end: 2024 }
+{ name: 'company two', category: 'finance', start: 1971, end: 2020 }
+{ name: 'company three', category: 'wholeSales', start: 1988, end: 1999}
+{ name: 'company four',category: 'wholeSales', start: 1996, end: 2010 }
+{ name: 'company five', category: 'retails', start: 1960, end: 2004 }
+{ name: 'company six', category: 'finance', start: 1992, end: 2011 }
+{ name: 'company seven', category: 'finance', start: 1986, end: 2009 }
+{ name: 'company eigth', category: 'retails', start: 1977, end: 2012 }
+{ name: 'company nine', category: 'retails', start: 1992, end: 2006 }
+{ name: 'company ten', category: 'wholeSales', start: 1992, end: 1997 }
+
+Filter
+a)
+const adult = ages.filter(age=>age>=18);
+console.log (adult)
+
+Answer:
+[ 33, 45, 77, 60, 23, 80, 55, 67, 29 ]
+
+b)
+const oldWholeSales = companies.filter(company =>
+company.category === 'wholeSales'&& company.start < 1990);
+console.log (oldWholeSales)
+
+Answer:
+[ { name: 'company three', category: 'wholeSales', start: 1988, end: 1999}]
+
+Array for each
+ages.forEach((age,index)=>{
+    if (index % 2) {
+        console.log(age)
+    age = age/2;
+        console.log(age);
+        ages[index]=age;
+    }
+});
+console.log(ages);
+
+Answer:
+12
+6
+77
+38.5
+23
+11.5
+80
+40
+67
+33.5
+16
+8
+[
+  33,    6, 45, 38.5,
+  60, 11.5,  7,   40,
+  55, 33.5, 29,    8
+]
+
+for each example 2
+total = 0;
+ages.forEach(age=> {
+    total = total + age;
+});
+console.log(total);
+
+Answer:
+504
+
+Map
+const companyNames = companies.map(company=>
+[company.name,company.end-company.start]);
+console.log(companyNames);
+
+Answer:
+[
+  [ 'company one', 32 ],
+  [ 'company two', 49 ],
+  [ 'company three', 11 ],
+  [ 'company four', 14 ],
+  [ 'company five', 44 ],
+  [ 'company six', 19 ],
+  [ 'company seven', 23 ],
+  [ 'company eigth', 35 ],
+  [ 'company nine', 14 ],
+  [ 'company ten', 5 ]
+]
+
+const testMap = companies.map(company=>
+`${company.name} [${company.start} - ${company.end}]`);
+console.log(testMap);
+
+Answer:
+[
+  'company one [1992 - 2024]',
+  'company two [1971 - 2020]',
+  'company three [1988 - 1999]',
+  'company four [1996 - 2010]',
+  'company five [1960 - 2004]',
+  'company six [1992 - 2011]',
+  'company seven [1986 - 2009]',
+  'company eigth [1977 - 2012]',
+  'company nine [1992 - 2006]',
+  'company ten [1992 - 1997]'
+]
+
+Reducing
+let a = [5,8,6,10,9];
+let max_value = (a,b) => a > b ? a : b ;
+function max_sequence(x) {
+    let result = x[0];
+    for (let element of x) {result = max_value(result, element);}
+        return result;
+    }
+console.log(max_sequence(a));
+
+Answer:
+10
+
+let a = [5,8,6,10,9];
+let min_value = (a,b) => a < b ? a : b ;
+function min_sequence(x) {
+    let result = x[0];
+    for (let element of x) {result = min_value(result, element);}
+    return result;
+    }
+console.log(min_sequence(a));
+
+Answer:
+5
+
+let a = [5,8,6,10,9];
+let sum=(a,b) => a+b;
+function reduce1(x, fn, initial) {
+    let result = initial;
+    for (let element of x) {result = fn(result, element);}
+    return result;
+}
+console.log(reduce1(a,sum,0));
+
+Answer:
+38
+
+array reducing function
+E.g.:
+let getSum = (total, num)=>{
+    return total + Math.round(num);
+}
+const numbers = [15.5, 2.3, 1.1 ,4.7];
+console.log(numbers.reduce(getSum,0));
+
+Answer:
+24
+
+Simply version - Design pattern
+function reduce(x,fn) {
+    let result = x[0];
+    for (let element of x) {result = fn(result, element);}
+    return result;
+    }
+console.log(reduce(a,max_value));
+console.log(reduce(a,min_value));
