@@ -1,0 +1,153 @@
+html, body {
+    padding: 0;
+    margin: 0;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    overflow-y: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+li {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+}
+
+.container1 {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.headbar {
+    background-color: cyan;
+    padding: 1rem 2rem;
+    height:80px;
+}
+
+.headbar .logo {
+    width: 50px;
+}
+
+.headbar-flex {
+    display: flex;
+    gap: 1.5rem;
+    align-items:center;
+    justify-content: space-between;
+}
+
+.menu-list {
+    display:flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.headbar .mobile-menu-items {
+    position: absolute;
+    top: 80px;
+    bottom: 0;
+    left: 0;
+    width:100%;
+    background: rgba(154,192,204,0.1);
+    text-align: center;
+    transition: transform 0.3s case;
+    transform: translateY(-100%); 
+    z-index: -1; 
+}
+
+.headbar .mobile-item-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    padding-top: 100px;
+    gap: 2rem;
+    font-size: 1.2rem;
+    margin-block: 0;
+}
+
+.headbar .mobile-menu-toggle {
+    cursor: pointer;
+}
+
+.headbar .mobile-menu-items.active {
+    transform: translateY(0);
+}
+
+.headbar .mobile-menu {
+    display: none;
+}
+
+.container2 {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height:500px;
+    position: relative;
+}
+
+.content {
+    background: url(../img/content.jpg) center/cover no-repeat;
+    color:#fff;
+    position:relative;
+    text-align: center;
+    p {
+        font-size: 1.5rem;
+        padding: 1rem;
+        margin-bottom: 2.5rem;
+    }
+}
+
+.content h1 {
+    font-size: 3rem;
+    padding: 1rem;
+}
+
+.content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+}
+
+.content .button1 {
+    text-decoration: none;
+    color: #fff;
+    padding: 1rem 2rem;
+    background: #333;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    opacity: 0.9;
+}
+
+.content .button1:hover {
+    opacity: 0.7;
+}
+
+@media (max-width:768px) {
+    .headbar .main-menu {
+        display: none;
+    }
+    .headbar .mobile-menu {
+        display: block;
+    }
+}
